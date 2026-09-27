@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600;800&display=swap');
+
+
+:root {
+    --gold-primary: #C5A059;     /* Το ζεστό χρυσό της φωτογραφίας */
+    --gold-hover: #A6823F;       /* Πιο σκούρο χρυσό για το hover */
+    --bg-marble: #F4EFEA;        /* Απαλό μπεζ / μαρμάρινο φόντο */
+    --card-bg: #FFFFFF;          /* Καθαρό λευκό για την κάρτα */
+    --text-dark: #3E3226;        /* Σκούρο σοκολατί/καφέ για τα γράμματα */
+    --text-muted: #8C7B6C;       /* Απαλό γκρι-καφέ για τις ετικέτες */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('images/Gemini_Generated_Image_6t20ou6t20ou6t20.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh; 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column; /* Τοποθετεί το Navbar πάνω και το booking από κάτω */
+    align-items: center;    /* Κεντράρει την κάρτα οριζόντια */
+    justify-content: flex-start;
+    padding-bottom: 40px;
+}
+
+
+/* --- 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ NAVBAR --- */
+.navbar {
+    width: 100%;
+    margin-bottom: 40px; /* Δημιουργεί απόσταση από το booking που βρίσκεται από κάτω */
+}
+
+.navbar ul {
+    list-style-type: none;
+    background: rgba(10, 25, 32, 0);
+    backdrop-filter: blur(25px);
+    margin: 0;
+    padding: 0 5%; 
+    display: flex;
+    align-items: center;    
+    justify-content: center; /* Κεντράρει τα li (Home, κλπ) στη μέση */
+    height: 100px;
+    position: relative;      /* Απαραίτητο για να στοιχιστεί το logo απόλυτα */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.178);
+    font-style: italic;
+}
+
+/* --- 2. ΡΥΘΜΙΣΕΙΣ LOGO (ΤΕΡΜΑ ΑΡΙΣΤΕΡΑ) --- */
+.logo-link {
+    position: absolute;      /* Βγάζει το logo από τη ροή και το "καρφώνει" */
+    left: 3%;                /* Τέρμα αριστερά (ίδιο margin με το padding του ul) */
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#logo {
+    height: 80px; 
+    width: auto;
+    background: transparent !important;
+    transition: transform 0.3s ease;
+}
+
+/* --- 3. ΡΥΘΜΙΣΕΙΣ ΓΙΑ ΤΑ LINKS (MENU) --- */
+.navbar li {
+    display: flex;
+    align-items: center;
+    margin: 0 5px; /* Μικρή απόσταση μεταξύ των λέξεων */
+}
+
+/* Αφαιρούμε το "order" γιατί τώρα τα θέλουμε στη σειρά τους */
+.navbar li { order: unset !important; }
+
+.navbar a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
+}
+
+/* HOVER ΓΙΑ ΤΑ LINKS */
+.navbar a:not(.logo-link):hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    color: var(--gold-primary);
+}
+
+#name_of_logo, #shop {
+    font-style: italic;
+    /* Χρώμα που μοιάζει με ασήμι/μέταλλο */
+    background: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Η λεπτομέρεια: Σκληρή σκιά που δίνει όγκο */
+    filter: drop-shadow(2px 2px 0px #c5a214) 
+            drop-shadow(5px 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: 3px;
+}
+
+/* --- 4. RESPONSIVE ΓΙΑ ΚΙΝΗΤΑ --- */
+@media (max-width: 950px) {
+    .navbar ul {
+        height: 90px; /* Μικρύναμε ελαφρώς το ύψος */
+        flex-direction: row; 
+        flex-wrap: nowrap; /* ΚΡΙΣΙΜΟ: Απαγορεύει στις λέξεις να αλλάξουν γραμμή */
+        justify-content: space-between; 
+        padding: 0 10px; /* Λιγότερο κενό δεξιά-αριστερά στην οθόνη */
+    }
+    
+    .logo-link {
+        position: static; 
+        margin: 0 !important;
+    }
+
+    #logo {
+        height: 45px; /* Μικραίνει το logo για να δώσει χώρο στις λέξεις */
+    }
+
+    .navbar li {
+        margin: 0 1px; /* Ελάχιστο κενό ανάμεσα στα li */
+    }
+
+    .navbar a {
+        font-size: 0.7rem; /* Πιο μικρή γραμματοσειρά για να χωράνε σίγουρα */
+        padding: 6px 6px; /* Μειώνουμε το εσωτερικό κενό (padding) των κουμπιών */
+        white-space: nowrap; /* Εμποδίζει το "OUR TEAM" να σπάσει σε δύο γραμμές */
+    }
+    
+    .title_of_paragraph {
+        letter-spacing: 2px !important;
+        font-size: 1.4rem !important;
+    }
+}
+
+
+
+/* --- DIV PARAGRAPH SECTION --- */
+.div_paragraph {
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 1100px;
+    background-color: var(--text-dark);
+    margin: 60px auto;
+    padding: 55px 45px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1.5px solid var(--gold-primary);
+    
+    /* Καθαρή χρυσή λάμψη (Gold Backlight Glow) χωρίς μαύρες σκιές */
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.5), 
+                0 0 60px rgba(197, 160, 89, 0.25);
+    
+    caret-color: transparent;
+}
+
+.title_of_paragraph {
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 5px;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.booking-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary, #C5A059), transparent);
+    margin: 20px auto 35px auto;
+}
+
+#paragraph {
+    font-family: 'Poppins', sans-serif;
+    color: #F4EFEA;
+    font-size: 1.08rem;
+    line-height: 1.9;
+    letter-spacing: 0.4px;
+    text-align: justify;
+    text-justify: inter-word;
+    font-weight: 300;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Χρυσή έμφαση στις λέξεις-κλειδιά */
+#paragraph strong {
+    color: var(--gold-primary);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* --- RESPONSIVE ΓΙΑ ΚΙΝΗΤΑ --- */
+@media (max-width: 768px) {
+    .div_paragraph {
+        width: 95%;
+        padding: 35px 22px;
+        margin: 40px auto;
+        /* Προσαρμοσμένη λάμψη για μικρότερες οθόνες */
+        box-shadow: 0 0 20px rgba(197, 160, 89, 0.4), 
+                    0 0 40px rgba(197, 160, 89, 0.2);
+    }
+
+    .title_of_paragraph {
+        font-size: 1.5rem !important;
+        letter-spacing: 2.5px !important;
+    }
+
+    #paragraph {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        text-align: left;
+        letter-spacing: 0.2px;
+    }
+}

@@ -1,0 +1,822 @@
+:root {
+    --gold-primary: #C5A059;     /* Το ζεστό χρυσό της φωτογραφίας */
+    --gold-hover: #A6823F;       /* Πιο σκούρο χρυσό για το hover */
+    --bg-marble: #F4EFEA;        /* Απαλό μπεζ / μαρμάρινο φόντο */
+    --card-bg: #FFFFFF;          /* Καθαρό λευκό για την κάρτα */
+    --text-dark: #3E3226;        /* Σκούρο σοκολατί/καφέ για τα γράμματα (όχι μαύρο) */
+    --text-muted: #8C7B6C;       /* Απαλό γκρι-καφέ για τις ετικέτες */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('images/Gemini_Generated_Image_6t20ou6t20ou6t20.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh; 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);  
+}
+
+
+
+
+
+
+
+/* --- 1. ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ NAVBAR --- */
+.navbar ul {
+    list-style-type: none;
+    background: rgba(10, 25, 32, 0);
+    backdrop-filter: blur(25px);
+    margin: 0;
+    padding: 0 5%; 
+    display: flex;
+    align-items: center;    
+    justify-content: center; /* Κεντράρει τα li (Home, κλπ) στη μέση */
+    height: 100px;
+    position: relative;      /* Απαραίτητο για να στοιχιστεί το logo απόλυτα */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-style: italic;
+}
+
+/* --- 2. ΡΥΘΜΙΣΕΙΣ LOGO (ΤΕΡΜΑ ΑΡΙΣΤΕΡΑ) --- */
+.logo-link {
+    position: absolute;      /* Βγάζει το logo από τη ροή και το "καρφώνει" */
+    left: 3%;                /* Τέρμα αριστερά (ίδιο margin με το padding του ul) */
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#logo {
+    height: 80px; 
+    width: auto;
+    background: transparent !important;
+    transition: transform 0.3s ease;
+}
+
+/* --- 3. ΡΥΘΜΙΣΕΙΣ ΓΙΑ ΤΑ LINKS (MENU) --- */
+.navbar li {
+    display: flex;
+    align-items: center;
+    margin: 0 5px; /* Μικρή απόσταση μεταξύ των λέξεων */
+}
+
+/* Αφαιρούμε το "order" γιατί τώρα τα θέλουμε στη σειρά τους */
+.navbar li { order: unset !important; }
+
+.navbar a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
+}
+
+/* HOVER ΓΙΑ ΤΑ LINKS */
+.navbar a:not(.logo-link):hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    color: var(--gold-primary);
+}
+#name_of_logo, #shop {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: RGB(226, 215, 198);
+    
+    text-align: center;
+}
+
+/* --- 4. RESPONSIVE ΓΙΑ ΚΙΝΗΤΑ --- */
+@media (max-width: 950px) {
+    .navbar ul {
+        height: 90px; /* Μικρύναμε ελαφρώς το ύψος */
+        flex-direction: row; 
+        flex-wrap: nowrap; /* ΚΡΙΣΙΜΟ: Απαγορεύει στις λέξεις να αλλάξουν γραμμή */
+        justify-content: space-between; 
+        padding: 0 10px; /* Λιγότερο κενό δεξιά-αριστερά στην οθόνη */
+    }
+    
+    .logo-link {
+        position: static; 
+        margin: 0 !important;
+    }
+
+    #logo {
+        height: 45px; /* Μικραίνει το logo για να δώσει χώρο στις λέξεις */
+    }
+
+    .navbar li {
+        margin: 0 1px; /* Ελάχιστο κενό ανάμεσα στα li */
+    }
+
+    .navbar a {
+        font-size: 0.7rem; /* Πιο μικρή γραμματοσειρά για να χωράνε σίγουρα */
+        padding: 6px 6px; /* Μειώνουμε το εσωτερικό κενό (padding) των κουμπιών */
+        white-space: nowrap; /* Εμποδίζει το "OUR TEAM" να σπάσει σε δύο γραμμές */
+    }
+    
+    .title_of_paragraph {
+        letter-spacing: 2px !important;
+        font-size: 1.4rem !important;
+    }
+}
+
+
+.background-wrapper {
+    position: relative; /* Απαραίτητο για να κλειδώσει το cover μέσα */
+    width: 100%;
+    height: 80vh; /* Ή όποιο ύψος θέλεις, π.χ. 500px */
+    overflow: hidden;
+}
+
+#first_photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cover {
+    /* Δημιουργεί το σκοτεινό φίλτρο πάνω από την εικόνα */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.468); /* Αυξάνεις το 0.5 αν το θες πιο σκούρο */
+    
+    /* Κεντράρει τα πάντα (λογότυπο και κείμενα) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#name_of_logo { 
+    
+    font-size: 5.2rem;
+    
+    margin: 0;
+}
+
+#shop { 
+    
+    font-size: 1.9rem;
+    
+    
+    margin: 0;
+}
+
+#bull { 
+    width: 250px; /* Καλύτερα σταθερό μέγεθος ή % */
+    margin-top: 0px; 
+}
+
+
+
+
+
+
+/* Χρυσή διακοσμητική γραμμή */
+.booking-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary, #C5A059), transparent);
+    margin: 20px auto;
+}
+
+
+
+
+
+/* ==========================================
+   SECTION CONTAINER
+   ========================================== */
+.luxury-location-section {
+    /* background-color: var(--bg-marble); */
+    margin-top: 0%;
+    padding: 90px 50px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 0px;
+}
+
+.location-wrapper {
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* HEADER STYLES */
+.location-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+
+.location-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.gold-line {
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    margin: 15px auto 0 auto;
+}
+
+/* GRID LAYOUT */
+.location-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* MAP STYLES */
+.map-box {
+    width: 100%;
+    height: 520px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    box-shadow: 0 15px 35px rgba(62, 50, 38, 0.08),
+                0 0 25px rgba(197, 160, 89, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.map-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(62, 50, 38, 0.12),
+                0 0 35px rgba(197, 160, 89, 0.25);
+}
+
+.map-box iframe,
+.map-box .google-map {
+    width: 100% !important;
+    height: 100% !important;
+    border: 0;
+}
+
+/* INFO CARD STYLES */
+.location-card {
+    background: var(--bg-marble);
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    border-radius: 20px;
+    padding: 45px 40px;
+    box-shadow: 0 20px 45px rgba(62, 50, 38, 0.06);
+}
+
+.salon-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin: 0 0 6px 0;
+}
+
+.salon-tagline {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* INFO ITEMS */
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 35px;
+   
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.info-icon {
+    font-size: 18px;
+    background: rgba(197, 160, 89, 0.12);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    color: var(--gold-primary);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-text strong {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.info-text p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-dark);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.info-text p a {
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-text p a:hover {
+    color: var(--gold-primary);
+}
+
+.sub-detail {
+    color: var(--text-muted) !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+}
+
+.sub-hint {
+    display: block;
+    font-size: 12px;
+    color: var(--gold-primary);
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* DIRECTIONS BUTTON */
+.directions-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 16px 0;
+    background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-hover) 100%);
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(197, 160, 89, 0.25);
+    transition: all 0.4s ease;
+    box-sizing: border-box;
+}
+
+.directions-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(197, 160, 89, 0.4);
+    border-color: #FFFFFF;
+}
+
+/* RESPONSIVE DESIGN FOR MOBILE */
+@media (max-width: 900px) {
+    .location-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .map-box {
+        height: 350px;
+    }
+
+    .location-card {
+        padding: 30px 20px;
+    }
+
+    .location-title {
+        font-size: 2.2rem;
+    }
+
+    .salon-name {
+        font-size: 1.8rem;
+    }
+}
+
+
+
+
+
+
+/* --- Διόρθωση για να μην βγαίνει οριζόντιο scrollbar --- */
+.delivery, #block-of-delivery {
+    box-sizing: border-box; /* Υπολογίζει τα padding μέσα στο πλάτος */
+}
+
+.delivery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding: 40px 15px; /* Μικρότερο padding στις άκρες για κινητά */
+    margin-top: 5%;
+    overflow-x: hidden; /* Αποτρέπει τυχόν overflow */
+}
+
+#block-of-delivery {
+    position: relative;
+    margin-top: 5%;
+    width: 100%;
+    max-width: 850px; /* Θα πιάνει έως 850px αλλά θα προσαρμόζεται σε μικρές οθόνες */
+    height: auto;
+    background-color: var(--bg-marble);
+    border-radius: 24px;
+    border: 1px solid rgba(197, 160, 89, 0.45);
+    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), inset 0 0 35px rgba(197, 160, 89, 0.06); */
+    padding: 40px 20px; /* Ασφαλή εσωτερικά περιθώρια */
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+}
+
+.button {
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #d4af37 0%, #9c7b30 100%);
+    box-shadow: 0 8px 25px rgba(156, 123, 48, 0.35);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(156, 123, 48, 0.5);
+    background: linear-gradient(135deg, #e2bd43 0%, #aa8635 100%);
+}
+
+.svg-icon {
+    stroke: #fff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+#title-of-delivery {
+    font-style: normal;
+    margin-top: 10px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+    letter-spacing: 3px;
+}
+
+#delivery-text {
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: center;
+    color: var(--gold-primary);
+    font-weight: 400;
+    padding: 0 10px;
+    letter-spacing: 0.5px;
+}
+
+#phone-number-delivery {
+    color: var(--text-dark);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    display: inline-block;
+    padding-bottom: 6px;
+}
+
+
+
+
+
+.info-container {
+    display: flex;
+    justify-content: center;   /* Κεντράρει όλο το div στη σελίδα */
+    align-items: flex-start;   /* Ευθυγραμμίζει τα περιεχόμενα στην κορυφή */
+    gap: 80px; 
+    background-color: var(--text-dark);
+    color: var(--gold-primary);
+    padding: 50px 20px;
+    margin-top: 15%;
+    font-family: Arial, sans-serif;
+}
+
+.hours-box {
+    margin-top: 2%;
+    text-align: left;
+}
+
+#open {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--card-bg);
+    text-align: center;
+    margin-top: 0;
+}
+
+.hours-box p {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+
+.tel-box {
+    padding-top: 5px; 
+    margin-top: 0.8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#contact {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--card-bg);
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+#tel {
+    margin-top: 0;
+    margin-bottom:0;
+    white-space: nowrap;
+}
+
+#tel a {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: var(--gold-primary);
+    text-decoration: none; /* Αφαιρεί τη μπλε γραμμή */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Απόσταση ανάμεσα στο εικονίδιο και τον αριθμό */
+    transition: color 0.3s ease;
+    
+}
+
+#tel a:hover {
+    color: var(--gold-hover); /* Αλλάζει σε σκούρο χρυσό στο hover */
+}
+
+#tel a svg {
+    stroke: var(--gold-primary);
+    transition: stroke 0.3s ease;
+}
+
+#tel a:hover svg {
+    stroke: var(--gold-hover);
+}
+
+#email {
+    font-size: 1.5rem;
+    color: white;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-primary);
+    margin-top: 0%;
+}
+
+/* Νέα Στήλη για το Instagram */
+.social-box {
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#follow-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--card-bg);
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+#link_relias{
+    text-decoration: none;
+    color: #ffffffa7;
+}
+
+.footer-signature {
+    clear: both;               
+    width: 100%;
+    background-color:var(--text-dark);
+    color: #777;
+    text-align: center;         
+    padding: 20px 30px;        
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    display: block;            
+}
+
+.designer-name {
+    color: var(--gold-primary);;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+/* Ρυθμίζουμε όλα τα p μέσα στο container */
+.info-container p {
+    font-size: 20px; 
+    text-align: center;
+}
+
+/* Ειδικό στυλ για τον τίτλο και το τηλέφωνο */
+#open, #tel {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* From Uiverse.io by Yaya12085 */ 
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: #0163E0;
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 30px;
+}
+
+.sign svg path {
+  fill: white;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  width: 150px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 10px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+
+
+
+/* --- MEDIA QUERIES ΓΙΑ ΚΙΝΗΤΑ --- */
+@media (max-width: 768px) {
+    .info-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        text-align: center;
+    }
+    
+    .hours-box, .tel-box, .social-box {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    #open, #contact, #follow-title {
+        margin-bottom: 15px;
+    }
+
+    .footer-signature {
+        text-align: center;    
+        padding: 15px;
+    }
+
+    /* 💡 1. Το εξωτερικό κουτί του χάρτη */
+    .google-map {
+        width: 88% !important;               /* Αφήνει 6% κενό αριστερά & 6% δεξιά */
+        max-width: 400px !important;          /* Δεν απλώνει πολύ */
+        margin: 20px auto 30px auto !important;/* Κεντράρισμα στη μέση της οθόνης */
+        display: block !important;
+        border-radius: 16px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        overflow: hidden !important;          /* Κόβει τις γωνίες του iframe */
+    }
+
+    /* 💡 2. Το ίδιο το iframe του Google Maps μέσα στο κουτί */
+    .google-map iframe {
+        width: 75% !important;
+        height: 250px !important;             /* Μικρότερο & κομψό ύψος για κινητά */
+        border-radius: 16px !important;
+    }
+}
